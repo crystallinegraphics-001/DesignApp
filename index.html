@@ -4,33 +4,63 @@
   <title>Design Order App</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="container">
+  <h1>Order Your Design 🎨</h1>
 
-    <h1>Order Your Design</h1>
-    <p>First design is FREE 🎁</p>
+  <form id="orderForm">
 
-    <form id="orderForm">
+    <label>Your Name:</label>
+    <input type="text" id="name" required>
 
-      <input type="text" id="name" placeholder="Your Name" required>
+    <label>Your Contact:</label>
+    <input type="text" id="contact" required>
 
-      <input type="text" id="contact" placeholder="Contact Number" required>
+    <label>Design Category:</label>
+    <select id="type">
+      <option>Flyer</option>
+      <option>Poster</option>
+      <option>Logo</option>
+      <option>Album Cover</option>
+      <option>Social Media Post</option>
+      <option>Business Card</option>
+      <option>Banner</option>
+      <option>YouTube Thumbnail</option>
+      <option>Packaging Design</option>
+      <option>Brand Kit</option>
+      <option>Invitation Card</option>
+      <option>Menu Design</option>
+      <option>T-Shirt Design</option>
+      <option>Website UI</option>
+      <option>Other (Custom Request)</option>
+    </select>
 
-      <select id="type">
-        <option value="Flyer">Flyer</option>
-        <option value="Poster">Poster</option>
-        <option value="Logo">Logo</option>
-        <option value="Social Media Post">Social Media Post</option>
-      </select>
+    <label>Request Type:</label>
+    <select id="requestType">
+      <option>New Design</option>
+      <option>Refine / Edit Existing Design</option>
+    </select>
 
-      <textarea id="description" placeholder="Describe your design..." required></textarea>
+    <label>Description:</label>
+    <textarea id="description" placeholder="Describe your design in detail..." required></textarea>
 
-      <button type="submit">Send Order</button>
+    <label>Business Name / Title:</label>
+    <input type="text" id="title">
 
-    </form>
+    <label>Design Contact (to appear on design):</label>
+    <input type="text" id="designContact">
 
-  </div>
+    <label>Upload Reference / Inspiration Images:</label>
+    <input type="file" id="images" multiple>
+
+    <p style="font-size: 12px; color: gray;">
+      After placing your order, you may also send images via WhatsApp if needed.
+    </p>
+
+    <button type="submit">Send Order 🚀</button>
+
+  </form>
 
   <script src="script.js"></script>
 
