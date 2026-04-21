@@ -15,20 +15,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let message =
 `🔥 NEW DESIGN ORDER 🔥
----------------------------
-Client Name: ${name}
-Client Contact: ${contact}
+---------------------
+Name: ${name}
+Contact: ${contact}
 
-Design Category: ${type}
-Request Type: ${requestType}
+Category: ${type}
+Request: ${requestType}
 
-Business Name/Title: ${title}
+Title: ${title}
 Design Contact: ${designContact}
 
 Description:
 ${description}
 
-NOTE: Client will send reference images if needed.
+Note: Reference images will be sent separately if needed.
 First design: FREE 🎁`;
 
     let encodedMessage = encodeURIComponent(message);
