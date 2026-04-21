@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      padding: 15px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+  <h1>📊 Orders Dashboard</h1>
+  <div id="orders"></div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "XXXX",
+      appId: "XXXX"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const ordersDiv = document.getElementById("orders");
+
+    db.collection("orders").orderBy("createdAt", "desc")
+      .onSnapshot(snapshot => {
+        ordersDiv.innerHTML = "";
+
+        snapshot.forEach(doc => {
+          let o = doc.data();
+
+          ordersDiv.innerHTML += `
+            <div class="card">
+              <b>Name:</b> ${o.name}<br>
+              <b>Contact:</b> ${o.contact}<br>
+              <b>Type:</b> ${o.type}<br>
+              <b>Request:</b> ${o.requestType}<br>
+              <b>Title:</b> ${o.title}<br>
+              <b>Description:</b> ${o.description}<br>
+              <b>Design Contact:</b> ${o.designContact}
+            </div>
+          `;
+        });
+      });
+  </script>
+
+</body>
+</html>
