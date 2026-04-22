@@ -20,7 +20,6 @@
       padding: 15px;
       margin: 10px 0;
       border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
   </style>
 
@@ -31,45 +30,52 @@
 
 <body>
 
-  <h1>📊 Orders Dashboard</h1>
-  <div id="orders"></div>
+<h1>📊 Orders Dashboard</h1>
+<div id="orders"></div>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "XXXX",
-      appId: "XXXX"
-    };
+<script>
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+// 🔥 SAME CONFIG AS script.js
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
+};
 
-    const ordersDiv = document.getElementById("orders");
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-    db.collection("orders").orderBy("createdAt", "desc")
-      .onSnapshot(snapshot => {
-        ordersDiv.innerHTML = "";
+const ordersDiv = document.getElementById("orders");
 
-        snapshot.forEach(doc => {
-          let o = doc.data();
+db.collection("orders").onSnapshot((snapshot) => {
 
-          ordersDiv.innerHTML += `
-            <div class="card">
-              <b>Name:</b> ${o.name}<br>
-              <b>Contact:</b> ${o.contact}<br>
-              <b>Type:</b> ${o.type}<br>
-              <b>Request:</b> ${o.requestType}<br>
-              <b>Title:</b> ${o.title}<br>
-              <b>Description:</b> ${o.description}<br>
-              <b>Design Contact:</b> ${o.designContact}
-            </div>
-          `;
-        });
-      });
-  </script>
+  ordersDiv.innerHTML = "";
+
+  if (snapshot.empty) {
+    ordersDiv.innerHTML = "<p>No orders yet</p>";
+    return;
+  }
+
+  snapshot.forEach(doc => {
+    let o = doc.data();
+
+    ordersDiv.innerHTML += `
+      <div class="card">
+        <b>Name:</b> ${o.name}<br>
+        <b>Contact:</b> ${o.contact}<br>
+        <b>Type:</b> ${o.type}<br>
+        <b>Title:</b> ${o.title}<br>
+        <b>Description:</b> ${o.description}
+      </div>
+    `;
+  });
+
+});
+
+</script>
 
 </body>
 </html>
