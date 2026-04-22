@@ -2,64 +2,56 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Design Order App</title>
+  <title>Design App</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
 
-  <h1>Order Your Design 🎨</h1>
+<h1>🎨 Place Your Order</h1>
 
-  <form id="orderForm">
+<form onsubmit="placeOrder(); return false;">
 
-    <label>Your Name:</label>
-    <input type="text" id="name" required>
+  <label>Name</label>
+  <input type="text" id="name" required>
 
-    <label>Your Contact:</label>
-    <input type="text" id="contact" required>
+  <label>Contact</label>
+  <input type="text" id="contact" required>
 
-    <label>Design Category:</label>
-    <select id="type">
-      <option>Flyer</option>
-      <option>Poster</option>
-      <option>Logo</option>
-      <option>Album Cover</option>
-      <option>Social Media Post</option>
-      <option>Business Card</option>
-      <option>Banner</option>
-      <option>YouTube Thumbnail</option>
-      <option>Packaging Design</option>
-      <option>Brand Kit</option>
-      <option>Invitation Card</option>
-      <option>Menu Design</option>
-      <option>T-Shirt Design</option>
-      <option>Website UI</option>
-      <option>Other (Custom Request)</option>
-    </select>
+  <label>Design Type</label>
+  <select id="type">
+    <option>Flyer</option>
+    <option>Poster</option>
+    <option>Logo</option>
+    <option>Album Cover</option>
+    <option>Other</option>
+  </select>
 
-    <label>Request Type:</label>
-    <select id="requestType">
-      <option>New Design</option>
-      <option>Refine / Edit Existing Design</option>
-    </select>
+  <label>Request Type</label>
+  <select id="requestType">
+    <option>New Design</option>
+    <option>Edit Design</option>
+  </select>
 
-    <label>Description:</label>
-    <textarea id="description" required></textarea>
+  <label>Title / Business</label>
+  <input type="text" id="title">
 
-    <label>Business Name / Title:</label>
-    <input type="text" id="title">
+  <label>Description</label>
+  <textarea id="description"></textarea>
 
-    <label>Design Contact (on design):</label>
-    <input type="text" id="designContact">
+  <label>Design Contact</label>
+  <input type="text" id="designContact">
 
-    <label>Upload Reference Images:</label>
-    <input type="file" id="images" multiple>
+  <button type="submit">Send Order 🚀</button>
 
-    <button type="submit">Send Order 🚀</button>
+</form>
 
-  </form>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
