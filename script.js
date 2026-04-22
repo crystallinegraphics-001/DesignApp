@@ -1,43 +1,35 @@
-document.addEventListener("DOMContentLoaded", function () {
+// 🔥 PASTE YOUR FIREBASE CONFIG HERE
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "DesigApp.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
+};
 
-  const form = document.getElementById("orderForm");
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+function placeOrder() {
 
-    let name = document.getElementById("name").value;
-    let contact = document.getElementById("contact").value;
-    let type = document.getElementById("type").value;
-    let requestType = document.getElementById("requestType").value;
-    let description = document.getElementById("description").value;
-    let title = document.getElementById("title").value;
-    let designContact = document.getElementById("designContact").value;
+  let order = {
+    name: document.getElementById("name").value,
+    contact: document.getElementById("contact").value,
+    type: document.getElementById("type").value,
+    requestType: document.getElementById("requestType").value,
+    title: document.getElementById("title").value,
+    description: document.getElementById("description").value,
+    designContact: document.getElementById("designContact").value,
+    createdAt: new Date()
+  };
 
-    let message =
-`🔥 NEW DESIGN ORDER 🔥
----------------------
-Name: ${name}
-Contact: ${contact}
+  db.collection("orders").add(order)
+    .then(() => {
+      alert("Order sent successfully ✅");
+    })
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
 
-Category: ${type}
-Request: ${requestType}
-
-Title: ${title}
-Design Contact: ${designContact}
-
-Description:
-${description}
-
-Note: Reference images will be sent separately if needed.
-First design: FREE 🎁`;
-
-    let encodedMessage = encodeURIComponent(message);
-    let phone = "260764606477";
-
-    let url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
-
-    window.location.href = url;
-
-  });
-
-});
+}
